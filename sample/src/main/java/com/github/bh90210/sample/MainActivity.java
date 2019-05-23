@@ -18,6 +18,8 @@ import android.widget.TextView;
 import dbwrapper.Dbwrapper;
 import dbwrapper.SimpleDBW;
 
+import static android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //getLifecycle().addObserver(new DBWhelper());
 
         setContentView(R.layout.activity_main);
+        getWindow().setSoftInputMode(SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 

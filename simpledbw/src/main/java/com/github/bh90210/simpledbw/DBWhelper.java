@@ -32,11 +32,14 @@ public class DBWhelper implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void LibOnResume() {
+        Dbwrapper.openDB(databaseDir);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    public void disconnectListener() {
+    public void disconnectListener()  {
+        Dbwrapper.closeDB();
     }
+
 
     //@OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     //public void cleanup() {

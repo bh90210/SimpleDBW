@@ -30,10 +30,12 @@ func OpenDB(dir string) {
 }
 
 func CloseDB() {
-	db := &opened
-	dbw := *db
-	dbw.Close()
-	dbhelper = 0
+	if dbhelper == 1 {
+		db := &opened
+		dbw := *db
+		dbw.Close()
+		dbhelper = 0
+	}
 }
 
 func (db *SimpleDBW) Update(key, value string) {
