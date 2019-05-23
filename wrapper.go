@@ -19,7 +19,7 @@ func NewSimpleDBW() *SimpleDBW {
 
 func OpenDB(dir string) {
 	if dbhelper == 0 {
-		opts := badger.DefaultOptions // optimize for smartphones
+		opts := badger.DefaultOptions
 		opts.Dir = dir
 		opts.ValueDir = dir
 
@@ -68,7 +68,13 @@ func (db *SimpleDBW) View(key string) string {
 	var varDBentry []byte
 	// badger view entry function
 	db.Badger.View(func(txn *badger.Txn) error {
-		item, _ := txn.Get([]byte(key))
+		item, err := txn.Get([]byte(key))
+		//handle(err)
+		if err != nil {
+		    varDBentry = []byte("Key does not exist")
+		    return err
+		}
+
 		item.Value(func(val []byte) error {
 			varDBentry = append([]byte{}, val...)
 			return nil
