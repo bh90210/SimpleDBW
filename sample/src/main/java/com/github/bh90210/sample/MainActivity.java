@@ -2,42 +2,88 @@ package com.github.bh90210.sample;
 
 import android.os.Bundle;
 
-import com.github.bh90210.simpledbw.Counter;
-import com.github.bh90210.simpledbw.Dbwrapper;
-import com.github.bh90210.simpledbw.Printer;
-import com.github.bh90210.simpledbw.SysPrint;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.github.bh90210.simpledbw.DBWhelper;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import dbwrapper.Dbwrapper;
+import dbwrapper.SimpleDBW;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        // Add Lifecycle Observer
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
+        //getLifecycle().addObserver(new DBWhelper());
+
+        setContentView(R.layout.activity_main);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
+        //SimpleDBW db = new SimpleDBW(); // it MUST NOT be used this way, explain in readme
+        Button set = findViewById(R.id.set);
+        set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText key = findViewById(R.id.key);
+                EditText value = findViewById(R.id.value);
+                SimpleDBW db = new SimpleDBW(); // this is the correct way, look into why tho
+                db.update(String.valueOf(key.getText()), String.valueOf(value.getText()));
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
 
-        Counter c = new Counter();
-        c.inc();
-        Printer printer = new SysPrint();
-        Dbwrapper.printHello(printer);
+        Button get = findViewById(R.id.get);
+        get.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText key = findViewById(R.id.keytolookup);
+                TextView value = findViewById(R.id.lookupvalue);
+                SimpleDBW db = new SimpleDBW();
+                String returnedvalue = db.view(String.valueOf(key.getText()));
+                value.setText(returnedvalue);
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        Button open = findViewById(R.id.open);
+        open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dbwrapper.openDB(String.valueOf(getApplicationContext().getFilesDir()));
+            }
+        });
+
+        Button close = findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dbwrapper.closeDB();
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override
