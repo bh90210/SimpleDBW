@@ -2,6 +2,7 @@ package dbwrapper
 
 import (
 	"github.com/dgraph-io/badger"
+	"github.com/dgraph-io/badger/options"
 )
 
 var opened *badger.DB
@@ -21,6 +22,15 @@ func OpenDB(dir string) {
 		opts := badger.DefaultOptions // optimize for smartphones
 		opts.Dir = dir
 		opts.ValueDir = dir
+
+		// badger memory usage optimisation
+		opts.NumCompactors = 1
+		opts.ValueLogLoadingMode = options.FileIO
+		opts.TableLoadingMode = options.FileIO
+		opts.NumLevelZeroTables = 3
+		opts.NumLevelZeroTablesStall = 7
+		opts.NumMemtables = 3
+
 		opening, err := badger.Open(opts)
 		handle(err)
 		//db.Badger = opening
@@ -36,6 +46,15 @@ func CloseDB() {
 		dbw.Close()
 		dbhelper = 0
 	}
+}
+
+func bytesToString(data []byte) string {
+	//fmt.Println("converted bytes to string")
+	return string(data[:])
+}
+
+func handle(err error) {
+	// todo
 }
 
 func (db *SimpleDBW) Update(key, value string) {
@@ -59,11 +78,26 @@ func (db *SimpleDBW) View(key string) string {
 	return bytesToString(varDBentry)
 }
 
-func bytesToString(data []byte) string {
-	//fmt.Println("converted bytes to string")
-	return string(data[:])
-}
+// Delete key
 
-func handle(err error) {
-	// todo
-}
+// Iterating over keys
+
+// - Prefix scans
+
+// - Key-only iteration
+
+// Merge Operations
+
+// Monotonically increasing integers
+
+// Setting Time To Live(TTL) and User Metadata on Keys
+
+// Stream
+
+// Database backup
+
+// Pseudo relational layer
+
+// - Experimental key-only
+
+// - Array implementaion?

@@ -61,22 +61,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        Button open = findViewById(R.id.open);
-        open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dbwrapper.openDB(String.valueOf(getApplicationContext().getFilesDir()));
-            }
-        });
-
-        Button close = findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dbwrapper.closeDB();
-            }
-        });
     }
 
     @Override

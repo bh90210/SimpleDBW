@@ -58,18 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="look-up" />
-
-            <Button
-                android:id="@+id/open"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="open db" />
-
-            <Button
-                android:id="@+id/close"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="close db" />
+            git
         </LinearLayout>
     </ScrollView>
 
