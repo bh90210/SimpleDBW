@@ -17,48 +17,19 @@
             android:layout_margin="16dp"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/key"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="key" />
+            <include layout="@layout/basic_usage" />
 
-            <EditText
-                android:id="@+id/value"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="value" />
+            <include layout="@layout/complete_example" />
 
-            <Button
-                android:id="@+id/set"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="set key/value pair" />
+            <include layout="@layout/iterator" />
 
-            <EditText
-                android:id="@+id/keytolookup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="key" />
+            <include layout="@layout/monotonically_increasing_integers" />
 
-            <TextView
-                android:id="@+id/lookupvalue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="value" />
+            <include layout="@layout/time_to_live" />
 
-            <Button
-                android:id="@+id/get"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="look-up" />
-            git
+            <include layout="@layout/backup_restore" />
+
+
         </LinearLayout>
     </ScrollView>
 

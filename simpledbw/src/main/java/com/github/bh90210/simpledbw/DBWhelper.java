@@ -13,7 +13,7 @@ import dbwrapper.Dbwrapper;
 public class DBWhelper implements LifecycleObserver {
     //from anywhere
     Context context = AppContext.get();
-    String databaseDir = String.valueOf(context.getFilesDir());
+    String databaseDir = String.valueOf(context.getFilesDir().getAbsolutePath());
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void init() {

@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import dbwrapper.Dbwrapper;
 import dbwrapper.SimpleDBW;
 
 import static android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Add Lifecycle Observer
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
-        //getLifecycle().addObserver(new DBWhelper());
 
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText value = findViewById(R.id.value);
                 SimpleDBW db = new SimpleDBW(); // this is the correct way, look into why tho
                 db.update(String.valueOf(key.getText()), String.valueOf(value.getText()));
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "key/value pair set", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -57,7 +55,17 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDBW db = new SimpleDBW();
                 String returnedvalue = db.view(String.valueOf(key.getText()));
                 value.setText(returnedvalue);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            }
+        });
+
+        Button del = findViewById(R.id.del);
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText key = findViewById(R.id.keytodelete);
+                SimpleDBW db = new SimpleDBW();
+                db.delete(String.valueOf(key.getText()));
+                Snackbar.make(view, "Deleted", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
