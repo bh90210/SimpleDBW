@@ -19,8 +19,6 @@
 
             <include layout="@layout/basic_usage" />
 
-            <include layout="@layout/complete_example" />
-
             <include layout="@layout/iterator" />
 
             <include layout="@layout/monotonically_increasing_integers" />
