@@ -80,6 +80,14 @@ func (db *SimpleDBW) Update(key, value string) {
 	handle(err)
 }
 
+// PrePopulate database function
+func (db *SimpleDBW) PrePopulate(key, value string) {
+	init := db.View(key)
+	if init == "key does not exist" {
+		db.Update(key, value)
+	}
+}
+
 // View method for viewing a key
 func (db *SimpleDBW) View(key string) string {
 	var varDBentry []byte
@@ -151,11 +159,6 @@ func (db *SimpleDBW) TTL(key, value, inputTime string) {
 	handle(errUpdate)
 }
 
-// PrePopulated database solution
-func (db *SimpleDBW) PrePopulated() {
-
-}
-
 /*
 // Backup database
 func (db *SimpleDBW) Backup() {
@@ -167,16 +170,9 @@ func (db *SimpleDBW) Backup() {
 	if sinceString == "key does not exist" {
 		sinceString = "0"
 	}
-	// convert fromp string to uint64
+	// convert front string to uint64
 	since, errIntConv := strconv.ParseUint(sinceString, 10, 64)
 	handle(errIntConv)
-	//
-	// Delete method for deleting a key
-		db.Badger.Update(func(txn *badger.Txn) error {
-			err := txn.Delete([]byte(key))
-			handle(err)
-			return nil
-
 	// perform the backup operation and get and new timestamp
 	newTimestamp, errTimeStamp := db.Badger.Backup(w, since)
 	handle(errTimeStamp)
