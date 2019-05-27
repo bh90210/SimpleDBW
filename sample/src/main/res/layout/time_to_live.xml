@@ -4,7 +4,6 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Setting Time To Live on keys"
@@ -12,8 +11,47 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/setinstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Please create a key/pair entry. You can make an new entry by changing key's name." />
+
+    <EditText
+        android:id="@+id/ttlkey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="TTL_key" />
+
+    <EditText
+        android:id="@+id/ttlvalue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="value" />
+
+    <Button
+        android:id="@+id/ttlset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="set TTL key" />
+
+    <TextView
+        android:id="@+id/countdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/ttlvalueret"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/ttlget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="lookup" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </merge>

@@ -36,6 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="set/update key" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <TextView
         android:id="@+id/lookupinstructions"
@@ -61,6 +65,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="look-up" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/deleteinstructions"
@@ -81,39 +88,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="delete" />
-
     <TextView
-        android:id="@+id/dumpinstructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Perform a database dump" />
-
-    <TextView
-        android:id="@+id/databasedumpKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/databasedumpValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/dump"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="dump db" />
 
     <TextView
         android:id="@+id/databasedrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Perform a database drop. After droping the db try looking-up for a key you previously created to verify the is gone." />
+        android:text="Or perform a database drop. After droping the db try looking-up for a key you previously created to verify the is gone." />
 
     <Button
         android:id="@+id/drop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="drop dp" />
+        android:text="drop db" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </merge>

@@ -2,6 +2,7 @@ package dbwrapper
 
 import (
 	"time"
+	//"strconv"
 
 	"github.com/dgraph-io/badger"
 	"github.com/dgraph-io/badger/options"
@@ -44,7 +45,6 @@ func OpenDB(dir string) {
 		opts.ValueDir = dir
 
 		// badger memory usage optimisation
-		opts.NumCompactors = 1
 		opts.ValueLogLoadingMode = options.FileIO
 		opts.TableLoadingMode = options.FileIO
 		opts.NumLevelZeroTables = 3
@@ -129,11 +129,15 @@ func (db *SimpleDBW) DropAll() {
 	handle(err)
 }
 
+// Pseudo relational layer
+
 // Iterating over keys - seek() - dump
 
 // - Prefix scans
 
 // - Key-only iteration
+
+// - Merge Operations
 
 // IncInt method for monotonically increasing integers - ie. notifications id
 func (db *SimpleDBW) IncInt(key string) int {
@@ -146,17 +150,22 @@ func (db *SimpleDBW) IncInt(key string) int {
 }
 
 // TTL Time To Live database keys with specified lifetime
-func (db *SimpleDBW) TTL(key, value, inputTime string) {
-	// convert input from string to Time
-	expiration, errParse := time.Parse("ANSIC", inputTime)
+func (db *SimpleDBW) Ttl(key, value, expiration string) {
+	expi, errParse := time.ParseDuration(expiration)
 	handle(errParse)
-	duration := time.Until(expiration)
-	errUpdate := db.Badger.Update(func(txn *badger.Txn) error {
-		errTTL := txn.SetWithTTL([]byte(key), []byte(value), duration)
-		handle(errTTL)
-		return nil
-	})
-	handle(errUpdate)
+
+	// Start a writable transaction.
+    txn := db.Badger.NewTransaction(true)
+    defer txn.Discard()
+
+    // Use the transaction...
+    errTTL := txn.SetWithTTL([]byte(key), []byte(value), expi)
+    handle(errTTL)
+
+    // Commit the transaction and check for error.
+    errCommit := txn.Commit()
+    handle(errCommit)
+
 }
 
 /*
@@ -186,10 +195,5 @@ func (db *SimpleDBW) Restore() {
 	handle(err)
 }
 */
-// TODO for v1.1  Pseudo relational layer
-
-// TODO for v1.1 - Merge Operations
-
-// TODO for v1.1 - Experimental key-only
 
 // TODO for v1.1 Stream implementation

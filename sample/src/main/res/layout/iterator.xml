@@ -16,4 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Please create a key/pair entry. You can make an new entry by changing key's name." />
+
+    <TextView
+        android:id="@+id/databasedumpValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/dump"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dump db" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </merge>

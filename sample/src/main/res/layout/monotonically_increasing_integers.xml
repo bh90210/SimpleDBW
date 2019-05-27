@@ -4,7 +4,6 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Monotonically increasing integers"
@@ -12,8 +11,42 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/setinstructions"
+        android:id="@+id/miiinstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please create a key/pair entry. You can make an new entry by changing key's name." />
+        android:text="Enter a key and hit 'next' button a few times. In case you want to start off zero again simply change key name. Please do not use an already existing key (or you will crash the db)" />
+
+    <EditText
+        android:id="@+id/keytomii"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="monotonic_key" />
+
+    <TextView
+        android:id="@+id/returedint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/nextint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next" />
+
+    <TextView
+        android:id="@+id/miiinstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset the counter by deleting the key." />
+
+    <Button
+        android:id="@+id/delint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete mii key" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </merge>
