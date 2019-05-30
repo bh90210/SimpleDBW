@@ -76,14 +76,10 @@ func (db *SimpleDBW) Update(key, value []byte) {
 
 // PrePopulate database function
 func (db *SimpleDBW) PrePopulate(key, value []byte) {
-	keyHelper := string(key) + "_HELPER"
-	init := db.View([]byte(keyHelper))
+	init := db.View(key)
 	inittoString := string(init)
-	if inittoString == "1" {
-		// if true means pre-populate has already ran so do nothing
-	} else {
+	if inittoString == "key does not exist" {
 		db.Update(key, value)
-		db.Update([]byte(keyHelper), []byte("1"))
 	}
 }
 

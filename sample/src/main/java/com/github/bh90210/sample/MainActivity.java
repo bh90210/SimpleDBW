@@ -18,9 +18,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import java.nio.ByteBuffer;
 import java.util.Iterator;
-import java.util.Map;
 
 import static android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN;
 

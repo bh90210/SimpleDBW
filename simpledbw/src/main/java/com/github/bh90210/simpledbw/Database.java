@@ -1,11 +1,6 @@
 package com.github.bh90210.simpledbw;
 
 import androidx.collection.ArrayMap;
-
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.Collection;
-
 import dbwrapper.Dbwrapper;
 import dbwrapper.SimpleDBW;
 
