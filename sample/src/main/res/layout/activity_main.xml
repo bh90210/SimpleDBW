@@ -23,9 +23,7 @@
 
             <include layout="@layout/monotonically_increasing_integers" />
 
-            <include layout="@layout/time_to_live" />
-
-            <include layout="@layout/backup_restore" />
+            <!--<include layout="@layout/backup_restore" />-->
 
 
         </LinearLayout>

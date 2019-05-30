@@ -15,5 +15,17 @@
         android:id="@+id/setinstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please create a key/pair entry. You can make an new entry by changing key's name." />
+        android:text="You can backup the database. The output file will be 'badger.bak' and you can find it here getAppContext().getFilesDir().getAbsolutePath();" />
+
+    <Button
+        android:id="@+id/backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="backup" />
+
+    <Button
+        android:id="@+id/restore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="restore" />
 </merge>

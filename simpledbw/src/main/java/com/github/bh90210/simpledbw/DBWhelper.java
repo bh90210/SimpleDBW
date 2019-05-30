@@ -16,9 +16,7 @@ public class DBWhelper implements LifecycleObserver {
     String databaseDir = String.valueOf(context.getFilesDir().getAbsolutePath());
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    public void init() {
-        Dbwrapper.openDB(databaseDir);
-    }
+    public void init() { Dbwrapper.openDB(databaseDir); }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void LibOnStart() {

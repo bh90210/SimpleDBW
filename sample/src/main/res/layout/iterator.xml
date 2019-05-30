@@ -15,18 +15,38 @@
         android:id="@+id/setinstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please create a key/pair entry. You can make an new entry by changing key's name." />
+        android:text="Dump the whole database." />
 
-    <TextView
-        android:id="@+id/databasedumpValue"
+    <TableLayout
+        android:id="@+id/ret_vals"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"/>
 
     <Button
         android:id="@+id/dump"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="dump db" />
+
+    <EditText
+        android:id="@+id/prefix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="PREFIX" />
+
+    <Button
+        android:id="@+id/prefixdump"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dump PREFIX" />
+
+    <Button
+        android:id="@+id/prefixdrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="drop PREFIX" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
