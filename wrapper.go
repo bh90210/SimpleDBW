@@ -76,14 +76,14 @@ func (db *SimpleDBW) Update(key, value []byte) {
 
 // PrePopulate database function
 func (db *SimpleDBW) PrePopulate(key, value []byte) {
-	keyHelper := append(key, "_HELPER"...)
-	init := db.View(key)
+	keyHelper := string(key) + "_HELPER"
+	init := db.View([]byte(keyHelper))
 	inittoString := string(init)
 	if inittoString == "1" {
 		// if true means pre-populate has already ran so do nothing
 	} else {
 		db.Update(key, value)
-		db.Update(keyHelper, []byte("1"))
+		db.Update([]byte(keyHelper), []byte("1"))
 	}
 }
 
@@ -140,7 +140,7 @@ func (db *SimpleDBW) KeyOnlyIterator() int {
 		for it.Rewind(); it.Valid(); it.Next() {
 			item := it.Item()
 			k := item.Key()
-			store[i] = k
+			store[i] = append([]byte{}, k...)
 			i++
 		}
 		return nil
@@ -159,7 +159,7 @@ func (db *SimpleDBW) KeyOnlyIteratorPrefix(prefix []byte) int {
 		for it.Seek(prefix); it.ValidForPrefix(prefix); it.Next() {
 			item := it.Item()
 			k := item.Key()
-			store[i] = k
+			store[i] = append([]byte{}, k...)
 			i++
 		}
 		return nil

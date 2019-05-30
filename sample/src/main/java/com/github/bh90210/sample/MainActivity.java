@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.nio.ByteBuffer;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -35,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Database db = new Database();
         // add some dummy pre-populated values
         db.PrePopulate(("PREFIX_sample").getBytes(), ("sample_value").getBytes());
-        db.PrePopulate("PREFIX_dummy".getBytes(), "dummy_value".getBytes());
+        db.PrePopulate(("PREFIX_dummy").getBytes(), ("dummy_value").getBytes());
+        db.PrePopulate(("dummy2").getBytes(), ("dummy2").getBytes());
+        db.PrePopulate(("dummy3").getBytes(), ("dummy3").getBytes());
+
 
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -96,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
                 TableLayout dump = findViewById(R.id.ret_vals);
                 dump.removeAllViews();
                 Iterator it = tables.entrySet().iterator();
-                int i = 0;
+
                 while (it.hasNext()) {
                     ArrayMap.Entry pair = (ArrayMap.Entry)it.next();
                     LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService
                             (Context.LAYOUT_INFLATER_SERVICE);
                     View row = inflater.inflate(R.layout.row, null);
-                    dump.addView(row, i);
+                    dump.addView(row);
                     //View rowID = row.findViewById(R.id.tableraw);
                     TextView keyfield = row.findViewById(R.id.printkey);
                     TextView valuefield = row.findViewById(R.id.printvalue);
@@ -111,11 +115,10 @@ public class MainActivity extends AppCompatActivity {
                     keyfield.setText(key);
                     valuefield.setText(value);
                     it.remove(); // avoids a ConcurrentModificationException
-                    i++;
                 }
                 Snackbar.make(view, "Database dumped", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                i = 0;
+
             }
         });
 
@@ -162,6 +165,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button nextint = findViewById(R.id.nextint);
+        nextint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText seed = findViewById(R.id.keytomii);
+                long returnedInt = db.Mii(seed.getText().toString().getBytes());
+                TextView resetCount = findViewById(R.id.returedint);
+                //resetCount.setText("");
+                resetCount.setText(String.valueOf(returnedInt));
+                Snackbar.make(view, "Integer generated", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
         Button delint = findViewById(R.id.delint);
         delint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 db.Delete(seed.getText().toString().getBytes());
                 TextView resetCount = findViewById(R.id.returedint);
                 resetCount.setText("");
-                Snackbar.make(view, "Coutner reset", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Counter reset", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

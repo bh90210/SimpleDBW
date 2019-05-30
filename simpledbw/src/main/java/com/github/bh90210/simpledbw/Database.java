@@ -2,6 +2,10 @@ package com.github.bh90210.simpledbw;
 
 import androidx.collection.ArrayMap;
 
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Collection;
+
 import dbwrapper.Dbwrapper;
 import dbwrapper.SimpleDBW;
 
@@ -11,18 +15,20 @@ public class Database {
     SimpleDBW db = new SimpleDBW();
     // get total numbers of keys in the database
     long total = db.keyOnlyIterator();
-    ArrayMap<byte[], byte[]> map = new ArrayMap((int)total);
+    ArrayMap<byte[], byte[]> keyvalue = new ArrayMap<>();
     // collect keys and values to a []byte<array>
+    keyvalue.clear();
     for (int i = 0; i < total; i++) {
       // get the next key
       byte[] key = Dbwrapper.dump(i);
+
       // get the value of that key
       byte[] value = db.view(key);
       //construct ArrayMap
-      map.put(key, value);
+      keyvalue.put(key, value);
     }
     // return ArrayMap
-    return map;
+    return keyvalue;
   }
 
   public static ArrayMap<byte[], byte[]> ViewPrefix(byte[] prefix) {
@@ -41,6 +47,7 @@ public class Database {
       map.put(key, value);
     }
     // return ArrayMap
+    //Dbwrapper.mapDel(total);
     return map;
   }
 
