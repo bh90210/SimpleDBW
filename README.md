@@ -46,7 +46,7 @@ A db.View query returns a byte[] with the requested value. If key does not exist
 byte[] returnedvalue = db.View("".getBytes());
 ```
 
-That can be for example converted to string and used with TextView like so
+This can be for example converted to string and used with TextView like so
 
 ```
 String text = new String(returnedvalue);
