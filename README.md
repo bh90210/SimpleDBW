@@ -18,28 +18,48 @@ Then in your module's main activity onCreate function simple add this line
 
 ```ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());```
 
+ie.
+```
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // DB init
+        // Add Lifecycle Observer
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
+```
+
 #### Set value
 
 ```Database db = new Database();```
 
-```db.Update(key.getText().toString().getBytes(), value.getText().toString().getBytes());```
+The database uses byte[] for both keys and values.
+
+```db.Update("key".getBytes(), "value".getBytes());```
 
 #### Get value
 
-```byte[] returnedvalue = db.View(key.getText().toString().getBytes());```
+A db.View query returns a byte[] with the requested value. If key does not exist it returns "key does not exist".
+```byte[] returnedvalue = db.View("".getBytes());```
 
+That can be for example converted to string and used with TextView like so
 ```String text = new String(returnedvalue);```
-```value.setText(text);```
+```exampleTextView.setText(text);```
 
 #### Delete key
 
-```db.Delete(key.getText().toString().getBytes());```
+```db.Delete("key".getBytes());```
 
 #### Iterate
 
 * Prefix
 
+You can iterated over the databese quering a specific prefix
+
 ```ArrayMap<byte[], byte[]> tables =  db.ViewPrefix(prefix.getText().toString().getBytes());```
+
+and you get an ArrayMap with all the associated keys and values. Please check Android's [documentation](https://developer.android.com/reference/android/support/v4/util/ArrayMap) for more information and usage.
                 
 
 * Dump
@@ -50,8 +70,10 @@ Then in your module's main activity onCreate function simple add this line
 #### Monotonically increasing integers
 ```long returnedInt = db.Mii(seed.getText().toString().getBytes());```
 
-```TextView resetCount = findViewById(R.id.returedint);
-resetCount.setText(String.valueOf(returnedInt));```
+```
+TextView resetCount = findViewById(R.id.returedint);
+resetCount.setText(String.valueOf(returnedInt));
+```
 
 Reseting the count by deleting the key
 ```db.Delete(seed.getText().toString().getBytes());```
@@ -61,8 +83,6 @@ Reseting the count by deleting the key
 
 #### Pre-populated entries
 ```db.PrePopulate(("PREFIX_sample").getBytes(), ("sample_value").getBytes());```
-
-#### Complete example
 
 ### Build Go source
 
