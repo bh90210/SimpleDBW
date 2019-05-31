@@ -14,7 +14,7 @@ The library uses lifecycle-extensions. In order for the database to work you hav
 
 ```implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"```
 
-Then in your module's main activity onCreate function simple add this line
+Then in your module's main activity onCreate function add this line
 
 ```ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());```
 
