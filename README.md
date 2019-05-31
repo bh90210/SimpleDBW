@@ -106,12 +106,7 @@ while (it.hasNext()) {
 
 You can get monotonically increasing integers with strong durability
 
-```long incInt = db.Mii("monotonic_key".getBytes());```
-
-```
-TextView counter = findViewById(R.id.intCounter);
-counter.setText(String.valueOf(incInt));
-```
+```long nextInt = db.Mii("monotonic_key".getBytes());```
 
 Reset the count by deleting the key
 ```db.Delete("monotonic_key".getBytes());```
