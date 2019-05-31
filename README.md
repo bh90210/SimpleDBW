@@ -103,21 +103,24 @@ while (it.hasNext()) {
 ```         
 
 #### Monotonically increasing integers
-```long returnedInt = db.Mii("monotonic_key".getBytes());```
+
+You can get monotonically increasing integers with strong durability
+
+```long incInt = db.Mii("monotonic_key".getBytes());```
 
 ```
-TextView resetCount = findViewById(R.id.returedint);
-resetCount.setText(String.valueOf(returnedInt));
+TextView counter = findViewById(R.id.intCounter);
+counter.setText(String.valueOf(incInt));
 ```
 
-Reseting the count by deleting the key
-```db.Delete(seed.getText().toString().getBytes());```
+Reset the count by deleting the key
+```db.Delete("monotonic_key".getBytes());```
 
 #### Drop all
 ```db.DropDB();```
 
 #### Pre-populated entries
-```db.PrePopulate(("PREFIX_sample").getBytes(), ("sample_value").getBytes());```
+```db.PrePopulate("PREFIX_sample".getBytes(), "sample_value".getBytes());```
 
 ### Build Go source
 
