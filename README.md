@@ -115,7 +115,27 @@ Reset the count by deleting the key
 ```db.DropDB();```
 
 #### Pre-populated entries
+
+Place this on your module's main activity onCreate function. Please note if you drop the DB or delete the key the next time the app starts and opens the database these keys *will* regenerate.
+
 ```db.PrePopulate("PREFIX_sample".getBytes(), "sample_value".getBytes());```
+
+ie. 
+```
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // DB init
+        // Add Lifecycle Observer
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
+        // call the class
+        Database db = new Database();
+        // add some dummy pre-populated values
+        db.PrePopulate(("PREFIX_sample").getBytes(), ("sample_value").getBytes());
+        db.PrePopulate(("PREFIX_dummy").getBytes(), ("dummy_value").getBytes());
+```
 
 ### Build Go source
 
