@@ -3,8 +3,8 @@ A very simple to use persistente storage (key/value) wrapper around [Badger](htt
 
 ### Download
 
-#### ARR download
-You can download the latest ARR release [here](https://github.com/bh90210/SimpleDBW/releases). Then you have to manually import the library (```simpledbw.arr```) in your Android project.
+#### AAR download
+You can download the latest AAR release [here](https://github.com/bh90210/SimpleDBW/releases). Then you have to manually import the library (```simpledbw.aar```) in your Android project.
 
 ### Usage
 
