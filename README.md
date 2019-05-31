@@ -59,7 +59,7 @@ exampleTextView.setText(text);
 
 #### Iterate
 
-* Prefix
+##### Prefix
 
 Iterated over the databese quering a specific prefix
 
@@ -72,7 +72,7 @@ Delete all keys assosiated with spedific prefix.
 ```db.PrefixDrop("prefix".getBytes());```
                 
 
-* Dump returns an ArrayMap with every entry in the database.
+##### Dump returns an ArrayMap with every entry in the database.
 
 ```ArrayMap<byte[], byte[]> entries =  db.DumpAll();```
 
