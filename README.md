@@ -61,7 +61,7 @@ exampleTextView.setText(text);
 
 ##### Prefix
 
-Iterated over the databese quering a specific prefix
+Iterated over the database quering a specific prefix
 
 ```ArrayMap<byte[], byte[]> entries =  db.ViewPrefix("prefix".getBytes());```
 
