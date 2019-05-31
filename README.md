@@ -133,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
         // call the class
         Database db = new Database();
         // add some dummy pre-populated values
-        db.PrePopulate(("PREFIX_sample").getBytes(), ("sample_value").getBytes());
-        db.PrePopulate(("PREFIX_dummy").getBytes(), ("dummy_value").getBytes());
+        db.PrePopulate("PREFIX_sample".getBytes(), "sample_value".getBytes());
+        db.PrePopulate("PREFIX_dummy".getBytes(), "dummy_value".getBytes());
 ```
 
 ### Build Go source
