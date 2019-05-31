@@ -43,7 +43,7 @@ The database uses byte[] for both keys and values.
 A db.View query returns a byte[] with the requested value. If key does not exist it returns "key does not exist".
 
 ```
-byte[] returnedvalue = db.View("".getBytes());
+byte[] returnedvalue = db.View("key".getBytes());
 ```
 
 This can be for example converted to string and used with TextView like so
