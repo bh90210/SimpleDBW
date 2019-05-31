@@ -69,7 +69,7 @@ and you get an ArrayMap with all the associated keys and values. Please check An
 
 Delete all keys assosiated with spedific prefix.
 
-```db.PrefixDrop(prefix.getText().toString().getBytes());```
+```db.PrefixDrop("prefix".getBytes());```
                 
 
 * Dump returns an ArrayMap with every entry in the database.
