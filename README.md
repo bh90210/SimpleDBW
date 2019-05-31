@@ -44,8 +44,10 @@ A db.View query returns a byte[] with the requested value. If key does not exist
 ```byte[] returnedvalue = db.View("".getBytes());```
 
 That can be for example converted to string and used with TextView like so
-```String text = new String(returnedvalue);```
-```exampleTextView.setText(text);```
+```
+String text = new String(returnedvalue);
+exampleTextView.setText(text);
+```
 
 #### Delete key
 
@@ -55,20 +57,49 @@ That can be for example converted to string and used with TextView like so
 
 * Prefix
 
-You can iterated over the databese quering a specific prefix
+Iterated over the databese quering a specific prefix
 
-```ArrayMap<byte[], byte[]> tables =  db.ViewPrefix(prefix.getText().toString().getBytes());```
+```ArrayMap<byte[], byte[]> entries =  db.ViewPrefix("prefix".getBytes());```
 
 and you get an ArrayMap with all the associated keys and values. Please check Android's [documentation](https://developer.android.com/reference/android/support/v4/util/ArrayMap) for more information and usage.
+
+Delete all keys assosiated with spedific prefix.
+
+```db.PrefixDrop(prefix.getText().toString().getBytes());```
                 
 
-* Dump
+* Dump returns an ArrayMap with every entry in the database.
 
-```ArrayMap<byte[], byte[]> tables =  db.DumpAll();```
-                
+```ArrayMap<byte[], byte[]> entries =  db.DumpAll();```
+
+it can be used for example to inflate a TableLayout
+
+ie. 
+```
+ArrayMap<byte[], byte[]> tables =  db.DumpAll();
+TableLayout dump = findViewById(R.id.ret_vals);
+dump.removeAllViews();
+Iterator it = tables.entrySet().iterator();
+
+while (it.hasNext()) {
+  ArrayMap.Entry pair = (ArrayMap.Entry)it.next();
+  LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService
+                            (Context.LAYOUT_INFLATER_SERVICE);
+  View row = inflater.inflate(R.layout.row, null);
+                    dump.addView(row);
+   //View rowID = row.findViewById(R.id.tableraw);
+   TextView keyfield = row.findViewById(R.id.printkey);
+   TextView valuefield = row.findViewById(R.id.printvalue);
+   String key = new String((byte[]) pair.getKey());
+   String value = new String((byte[]) pair.getValue());
+   keyfield.setText(key);
+   valuefield.setText(value);
+    it.remove(); // avoids a ConcurrentModificationException
+}
+```         
 
 #### Monotonically increasing integers
-```long returnedInt = db.Mii(seed.getText().toString().getBytes());```
+```long returnedInt = db.Mii("monotonic_key".getBytes());```
 
 ```
 TextView resetCount = findViewById(R.id.returedint);
