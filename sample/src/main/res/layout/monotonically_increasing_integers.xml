@@ -35,7 +35,7 @@
         android:text="next" />
 
     <TextView
-        android:id="@+id/miiinstructions"
+        android:id="@+id/miiresetinstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Reset the counter by deleting the key." />

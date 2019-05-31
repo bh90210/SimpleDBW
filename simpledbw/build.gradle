@@ -1,7 +1,20 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.novoda.bintray-release'
 
-group='com.github.bh90210'
+publish {
+
+    def groupProjectID = 'com.github.bh90210'
+    def artifactProjectID = 'simpledbw'
+    def publishVersionID = '0.1.5'
+
+    userOrg = 'bh90210'
+    repoName = 'SimpleDBW'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = 'a persistent (key/value) storage library/wrapper for android using badgerDB.'
+    website = 'https://github.com/bh90210/SimpleDBW'
+}
 
 repositories {
     flatDir {
