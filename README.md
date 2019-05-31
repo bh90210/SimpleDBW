@@ -1,5 +1,5 @@
 # SimpleDBW
-A very simple to use persistente storage wrapper around [Badger](https://github.com/dgraph-io/badger) for Android.
+A simple to use persistente storage wrapper around [Badger](https://github.com/dgraph-io/badger) for Android.
 
 ### Download
 
