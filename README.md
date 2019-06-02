@@ -152,7 +152,7 @@ and
 * ```go get golang.org/x/mobile/cmd/gomobile```
 * ```gomobile init```
 
-Then
+then
 
 * run ```go get https://github.com/bh90210/SimpleDBW``` 
 * and ```gomobile bind -o simpledbw/dbwrapper.aar -target=android $GOPATH/src/github.com/bh90210/SimpleDBW``` 
