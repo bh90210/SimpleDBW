@@ -3,12 +3,10 @@ A simple to use persistente storage wrapper around [Badger](https://github.com/d
 
 ![usage preview](https://media.giphy.com/media/QygXWDXt26asEEAe0V/giphy.gif)
 
-### Download
+### Installation
 
-#### AAR download
-You can download the latest AAR release [here](https://github.com/bh90210/SimpleDBW/releases). Then you have to manually import the library (```simpledbw.aar```) in your Android project.
-
-### Usage
+#### module download
+Download (or clone) the repository 
 
 #### initialisation 
 
@@ -31,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         // Add Lifecycle Observer
         ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
 ```
+
+### Usage
 
 #### Set value
 
