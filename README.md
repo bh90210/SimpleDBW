@@ -7,7 +7,7 @@ A simple to use persistente storage wrapper around [Badger](https://github.com/d
 Download (or clone) the repository then use Android Studio to import the library to your project `file > new > import module`
 
 In your app's module `build.gradle` file include
-```
+```gradle
 repositories {
     flatDir {
         dirs './simpledbw/libs'
@@ -16,7 +16,7 @@ repositories {
 ```
 
 The library uses lifecycle-extensions. So you have to also include this dependacy.
-```
+```gradle
 dependencies {
    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
    implementation (name:'simpledbw')
@@ -25,10 +25,12 @@ dependencies {
 #### initialisation 
 In your module's main activity onCreate function add this line
 
-```ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());```
+```java
+ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());
+```
 
 ie.
-```
+```java
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,30 +45,36 @@ public class MainActivity extends AppCompatActivity {
 
 #### Set value
 
-```Database db = new Database();```
+```java
+Database db = new Database();
+```
 
 The database uses byte[] for both keys and values.
 
-```db.Update("key".getBytes(), "value".getBytes());```
+```java
+db.Update("key".getBytes(), "value".getBytes());
+```
 
 #### Get value
 
 A db.View query returns a byte[] with the requested value. If key does not exist it returns "key does not exist".
 
-```
+```java
 byte[] returnedvalue = db.View("key".getBytes());
 ```
 
 This can be for example converted to string and used with TextView like so
 
-```
+```java
 String text = new String(returnedvalue);
 exampleTextView.setText(text);
 ```
 
 #### Delete key
 
-```db.Delete("key".getBytes());```
+```java
+db.Delete("key".getBytes());
+```
 
 #### Iterate
 
@@ -74,23 +82,29 @@ exampleTextView.setText(text);
 
 Iterated over the database quering a specific prefix
 
-```ArrayMap<byte[], byte[]> entries =  db.ViewPrefix("prefix".getBytes());```
+```java
+ArrayMap<byte[], byte[]> entries =  db.ViewPrefix("prefix".getBytes());
+```
 
 and you get an ArrayMap with all the associated keys and values. Please check Android's [documentation](https://developer.android.com/reference/android/support/v4/util/ArrayMap) for more information and usage.
 
 Delete all keys assosiated with spedific prefix.
 
-```db.PrefixDrop("prefix".getBytes());```
+```java
+db.PrefixDrop("prefix".getBytes());
+```
                 
 
 ##### Dump returns an ArrayMap with every entry in the database.
 
-```ArrayMap<byte[], byte[]> entries =  db.DumpAll();```
+```java
+ArrayMap<byte[], byte[]> entries =  db.DumpAll();
+```
 
 it can be used for example to inflate a TableLayout
 
 ie. 
-```
+```java
 ArrayMap<byte[], byte[]> tables =  db.DumpAll();
 TableLayout dump = findViewById(R.id.ret_vals);
 dump.removeAllViews();
@@ -117,22 +131,30 @@ while (it.hasNext()) {
 
 You can get monotonically increasing integers with strong durability
 
-```long nextInt = db.Mii("monotonic_key".getBytes());```
+```java
+long nextInt = db.Mii("monotonic_key".getBytes());
+```
 
 Reset the count by deleting the key
-```db.Delete("monotonic_key".getBytes());```
+```java
+db.Delete("monotonic_key".getBytes());
+```
 
 #### Drop all
-```db.DropDB();```
+```java
+db.DropDB();
+```
 
 #### Pre-populated entries
 
 Place this on your module's main activity onCreate function. Please note if you drop the DB or delete the key the next time the app starts and opens the database these keys *will* regenerate.
 
-```db.PrePopulate("PREFIX_sample".getBytes(), "sample_value".getBytes());```
+```java
+db.PrePopulate("PREFIX_sample".getBytes(), "sample_value".getBytes());
+```
 
 ie. 
-```
+```java
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
