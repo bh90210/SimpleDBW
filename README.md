@@ -23,7 +23,7 @@ dependencies {
 }
 ```
 #### initialisation 
-Then in your module's main activity onCreate function add this line
+In your module's main activity onCreate function add this line
 
 ```ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());```
 
