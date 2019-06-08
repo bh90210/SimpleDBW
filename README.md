@@ -9,6 +9,14 @@ A simple to use persistente storage wrapper around [Badger](https://github.com/d
 Download (or clone) the repository then use Android Studio to import the library `file > new > import module`
 
 #### initialisation 
+In your app's module `build.gradle` file include
+```
+repositories {
+    flatDir {
+        dirs './simpledbw/libs'
+    }
+}
+```
 
 The library uses lifecycle-extensions. In order for the database to work you have to include the dependacy in your module's build.gradle.
 
