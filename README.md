@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
 Unfortunatly gomobile does not support gomodules at the moment so you have to work within $GOPATH.
 
-First ensure you have gomobile and badger installed. For more information click [here](https://godoc.org/golang.org/x/mobile/cmd/gomobile) and [here](https://github.com/dgraph-io/badger).
+First ensure you have gomobile and badger installed. For more information click [here](https://godoc.org/golang.org/x/mobile/cmd/gomobile) and [here](https://github.com/dgraph-io/badger) respectively.
 
 * ```go get github.com/dgraph-io/badger/...```
 
