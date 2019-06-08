@@ -15,7 +15,7 @@ repositories {
 }
 ```
 
-The library uses lifecycle-extensions. In order for the database to work you have to include the dependacy in your module's build.gradle.
+The library uses lifecycle-extensions. So you have to also include this dependacy.
 ```
 dependencies {
    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
