@@ -4,11 +4,8 @@ A simple to use persistente storage wrapper around [Badger](https://github.com/d
 ![usage preview](https://media.giphy.com/media/QygXWDXt26asEEAe0V/giphy.gif)
 
 ### Installation
-
-#### module download
 Download (or clone) the repository then use Android Studio to import the library to your project `file > new > import module`
 
-#### initialisation 
 In your app's module `build.gradle` file include
 ```
 repositories {
@@ -25,7 +22,7 @@ dependencies {
    implementation (name:'simpledbw')
 }
 ```
-
+#### initialisation 
 Then in your module's main activity onCreate function add this line
 
 ```ProcessLifecycleOwner.get().getLifecycle().addObserver(new DBWhelper());```
