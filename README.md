@@ -6,7 +6,7 @@ A simple to use persistente storage wrapper around [Badger](https://github.com/d
 ### Installation
 
 #### module download
-Download (or clone) the repository then use Android Studio to import the library `file > new > import module`
+Download (or clone) the repository then use Android Studio to import the library to your project `file > new > import module`
 
 #### initialisation 
 In your app's module `build.gradle` file include
@@ -15,6 +15,12 @@ repositories {
     flatDir {
         dirs './simpledbw/libs'
     }
+}
+```
+and
+```
+dependencies {
+   implementation(name:'simpledbw')
 }
 ```
 
